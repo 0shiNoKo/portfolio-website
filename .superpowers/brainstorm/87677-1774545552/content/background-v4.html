@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face {
+    font-family: 'GreatVibes';
+    src: url('/files/GreatVibes-Regular.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Inter';
+    src: url('/files/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+    font-weight: 100 900;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #fff9eb; font-family: 'Inter', sans-serif; min-height: 100vh; overflow: hidden; position: relative; }
+
+  .blob { position: fixed; border-radius: 50%; filter: blur(80px); opacity: 0.18; pointer-events: none; }
+  .blob-1 { width: 520px; height: 420px; background: #ff89ba; top: -100px; left: -80px; }
+  .blob-2 { width: 380px; height: 380px; background: #ffb9cf; top: 30%; right: -60px; opacity: 0.22; }
+  .blob-3 { width: 300px; height: 260px; background: #bd3c6d; bottom: 10%; left: 20%; opacity: 0.12; }
+  .blob-4 { width: 240px; height: 200px; background: #ff78b3; top: 55%; left: 10%; opacity: 0.14; }
+  .blob-5 { width: 200px; height: 180px; background: #ffb9cf; bottom: 5%; right: 15%; opacity: 0.2; }
+
+  .petal { position: fixed; pointer-events: none; opacity: 0; animation: fall linear infinite; }
+  @keyframes fall {
+    0%   { transform: translateY(-40px) rotate(0deg) translateX(0px); opacity: 0; }
+    5%   { opacity: 0.85; }
+    90%  { opacity: 0.7; }
+    100% { transform: translateY(110vh) rotate(540deg) translateX(var(--drift)); opacity: 0; }
+  }
+
+  .content {
+    position: relative; z-index: 10;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 100vh; text-align: center; padding: 40px;
+  }
+  .name {
+    font-family: 'GreatVibes', cursive;
+    font-size: 15rem;
+    color: #7b0027;
+    line-height: 1;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 24px #ffb9cf88;
+  }
+  .tagline {
+    font-size: 0.85rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #bd3c6d;
+    font-weight: 500;
+    margin-bottom: 28px;
+  }
+  .cta {
+    background: linear-gradient(90deg, #9c1e4a, #bd3c6d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+<div class="blob blob-4"></div>
+<div class="blob blob-5"></div>
+<div id="petals"></div>
+
+<div class="content">
+  <div class="name">Oshinoko</div>
+  <div class="tagline">Improvement is Key</div>
+  <a class="cta" href="#">Let's talk</a>
+</div>
+
+<script>
+  const petalShapes = [
+    `<svg width="18" height="22" viewBox="0 0 18 22"><ellipse cx="9" cy="11" rx="7" ry="10" fill="COLOR"/></svg>`,
+    `<svg width="14" height="20" viewBox="0 0 14 20"><path d="M7 0 C12 6 12 14 7 20 C2 14 2 6 7 0Z" fill="COLOR"/></svg>`,
+    `<svg width="22" height="14" viewBox="0 0 22 14"><ellipse cx="11" cy="7" rx="10" ry="6" fill="COLOR"/></svg>`,
+  ];
+  const colors = ['#ffb9cf', '#ff99c1', '#ff89ba', '#ff78b3', '#fde8f0', '#ffd0e0'];
+  const container = document.getElementById('petals');
+  for (let i = 0; i < 38; i++) {
+    const el = document.createElement('div');
+    el.className = 'petal';
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const shape = petalShapes[Math.floor(Math.random() * petalShapes.length)];
+    const size = 0.6 + Math.random() * 1.2;
+    const drift = (Math.random() - 0.5) * 180;
+    const duration = 6 + Math.random() * 10;
+    const delay = Math.random() * 12;
+    const startX = Math.random() * 110;
+    el.innerHTML = shape.replace('COLOR', color);
+    el.style.cssText = `left:${startX}vw;top:0;transform:scale(${size});--drift:${drift}px;animation-duration:${duration}s;animation-delay:${delay}s;`;
+    container.appendChild(el);
+  }
+</script>
+</body>
+</html>

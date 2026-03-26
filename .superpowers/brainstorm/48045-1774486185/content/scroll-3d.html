@@ -1,0 +1,210 @@
+<style>
+  body-bg { background: white; }
+
+  h2 { color: #1a0008; }
+  .subtitle { color: #9c1e4a; }
+
+  /* === OPTION A: Perspective Row (like Apple TV+) === */
+  .demo-a {
+    background: #fff;
+    border: 1px solid #ffb9cf55;
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .demo-label { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: #bd3c6d; font-weight: 700; margin-bottom: 14px; }
+  .persp-row {
+    display: flex;
+    gap: 14px;
+    perspective: 800px;
+    overflow-x: auto;
+    padding: 20px 10px;
+    scrollbar-width: none;
+  }
+  .persp-row::-webkit-scrollbar { display: none; }
+  .persp-card {
+    min-width: 160px;
+    height: 90px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.3s;
+    box-shadow: 0 8px 24px #bd3c6d33;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+  }
+  .persp-card:hover { transform: translateY(-6px) rotateY(-8deg) scale(1.05); box-shadow: 0 16px 40px #bd3c6d55; }
+  .persp-card-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    color: #fff9eb;
+    font-size: 0.6rem;
+    font-weight: 600;
+    padding: 6px 8px 5px;
+    letter-spacing: 0.5px;
+  }
+
+  /* === OPTION B: Infinite Marquee with depth === */
+  .demo-b {
+    background: #fff9eb;
+    border: 1px solid #ffb9cf55;
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .marquee-wrap {
+    overflow: hidden;
+    position: relative;
+  }
+  .marquee-track {
+    display: flex;
+    gap: 16px;
+    animation: marquee 12s linear infinite;
+    width: max-content;
+  }
+  .marquee-card {
+    width: 170px;
+    height: 96px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    position: relative;
+    transform: perspective(600px) rotateY(-6deg);
+    box-shadow: 0 6px 20px #bd3c6d22;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+  }
+  .marquee-card-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.65));
+    color: white; font-size: 0.58rem; font-weight: 600; padding: 5px 8px 4px;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* === OPTION C: 3D Tilt Grid === */
+  .demo-c {
+    background: #fff;
+    border: 1px solid #ffb9cf55;
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .tilt-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    perspective: 1000px;
+  }
+  .tilt-card {
+    height: 80px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    box-shadow: 0 4px 16px #bd3c6d22;
+    transition: transform 0.4s, box-shadow 0.4s;
+    cursor: pointer;
+  }
+  .tilt-card:hover { transform: perspective(400px) rotateX(8deg) rotateY(-5deg) scale(1.04); box-shadow: 0 12px 32px #bd3c6d44; }
+  .tilt-card-label { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.65)); color: white; font-size: 0.58rem; font-weight: 600; padding: 5px 8px 4px; }
+
+  .option-pill {
+    display: inline-block;
+    background: #fff9eb;
+    border: 1.5px solid #ffb9cf;
+    color: #9c1e4a;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 12px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    cursor: pointer;
+  }
+  .option-pill.selected { background: linear-gradient(90deg, #9c1e4a, #bd3c6d); color: white; border-color: transparent; }
+</style>
+
+<h2>3D Gallery Effect — Pick a style</h2>
+<p class="subtitle">Hover over the cards to feel the 3D interaction. Your real thumbnails replace the placeholders.</p>
+
+<!-- OPTION A -->
+<div class="demo-a option" data-choice="persp-row" onclick="toggleSelect(this)" style="cursor:pointer;">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+    <div class="letter" style="width:28px;height:28px;background:linear-gradient(135deg,#9c1e4a,#bd3c6d);color:white;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;">A</div>
+    <div>
+      <div class="demo-label" style="margin-bottom:0;">Perspective Scroll Row</div>
+      <div style="font-size:0.72rem;color:#7b0027aa;">Cards tilt in 3D as you hover — scroll horizontally through all work</div>
+    </div>
+  </div>
+  <div class="persp-row">
+    <div class="persp-card" style="background:linear-gradient(135deg,#2a0015,#bd3c6d,#ff78b3);">
+      <div class="persp-card-label">Karma Duotage</div></div>
+    <div class="persp-card" style="background:linear-gradient(135deg,#1a3a00,#4a8a1a,#aaff44);">
+      <div class="persp-card-label">Leaftage V1</div></div>
+    <div class="persp-card" style="background:linear-gradient(135deg,#0a0020,#cc44aa,#ff4488);">
+      <div class="persp-card-label">TMOA HT3</div></div>
+    <div class="persp-card" style="background:linear-gradient(135deg,#100030,#6644cc,#aaccff);">
+      <div class="persp-card-label">Lunamc Mace</div></div>
+    <div class="persp-card" style="background:linear-gradient(135deg,#200020,#994499,#ffccff);">
+      <div class="persp-card-label">Lunamc Cart</div></div>
+    <div class="persp-card" style="background:linear-gradient(135deg,#001a10,#1a6640,#88ffcc);">
+      <div class="persp-card-label">Christmas Tage</div></div>
+  </div>
+</div>
+
+<!-- OPTION B -->
+<div class="demo-b option" data-choice="marquee" onclick="toggleSelect(this)" style="cursor:pointer;">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+    <div class="letter" style="width:28px;height:28px;background:linear-gradient(135deg,#9c1e4a,#bd3c6d);color:white;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;">B</div>
+    <div>
+      <div class="demo-label" style="margin-bottom:0;">Auto-Scrolling 3D Marquee</div>
+      <div style="font-size:0.72rem;color:#7b0027aa;">Thumbnails scroll automatically in an infinite loop with perspective depth</div>
+    </div>
+  </div>
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <div class="marquee-card" style="background:linear-gradient(135deg,#2a0015,#bd3c6d,#ff78b3);"><div class="marquee-card-label">Karma Duotage</div></div>
+      <div class="marquee-card" style="background:linear-gradient(135deg,#1a3a00,#4a8a1a,#aaff44);"><div class="marquee-card-label">Leaftage V1</div></div>
+      <div class="marquee-card" style="background:linear-gradient(135deg,#0a0020,#cc44aa,#ff4488);"><div class="marquee-card-label">TMOA HT3</div></div>
+      <div class="marquee-card" style="background:linear-gradient(135deg,#100030,#6644cc,#aaccff);"><div class="marquee-card-label">Lunamc Mace</div></div>
+      <div class="marquee-card" style="background:linear-gradient(135deg,#200020,#994499,#ffccff);"><div class="marquee-card-label">Lunamc Cart</div></div>
+      <div class="marquee-card" style="background:linear-gradient(135deg,#001a10,#1a6640,#88ffcc);"><div class="marquee-card-label">Christmas Tage</div></div>
+      <!-- duplicate for infinite loop -->
+      <div class="marquee-card" style="background:linear-gradient(135deg,#2a0015,#bd3c6d,#ff78b3);"><div class="marquee-card-label">Karma Duotage</div></div>
+      <div class="marquee-card" style="background:linear-gradient(135deg,#1a3a00,#4a8a1a,#aaff44);"><div class="marquee-card-label">Leaftage V1</div></div>
+      <div class="marquee-card" style="background:linear-gradient(135deg,#0a0020,#cc44aa,#ff4488);"><div class="marquee-card-label">TMOA HT3</div></div>
+      <div class="marquee-card" style="background:linear-gradient(135deg,#100030,#6644cc,#aaccff);"><div class="marquee-card-label">Lunamc Mace</div></div>
+      <div class="marquee-card" style="background:linear-gradient(135deg,#200020,#994499,#ffccff);"><div class="marquee-card-label">Lunamc Cart</div></div>
+      <div class="marquee-card" style="background:linear-gradient(135deg,#001a10,#1a6640,#88ffcc);"><div class="marquee-card-label">Christmas Tage</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- OPTION C -->
+<div class="demo-c option" data-choice="tilt-grid" onclick="toggleSelect(this)" style="cursor:pointer;">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+    <div class="letter" style="width:28px;height:28px;background:linear-gradient(135deg,#9c1e4a,#bd3c6d);color:white;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;">C</div>
+    <div>
+      <div class="demo-label" style="margin-bottom:0;">3D Tilt Grid</div>
+      <div style="font-size:0.72rem;color:#7b0027aa;">Grid layout — each card tilts toward you on hover with depth shadow</div>
+    </div>
+  </div>
+  <div class="tilt-grid">
+    <div class="tilt-card" style="background:linear-gradient(135deg,#2a0015,#bd3c6d,#ff78b3);"><div class="tilt-card-label">Karma Duotage</div></div>
+    <div class="tilt-card" style="background:linear-gradient(135deg,#1a3a00,#4a8a1a,#aaff44);"><div class="tilt-card-label">Leaftage V1</div></div>
+    <div class="tilt-card" style="background:linear-gradient(135deg,#0a0020,#cc44aa,#ff4488);"><div class="tilt-card-label">TMOA HT3</div></div>
+    <div class="tilt-card" style="background:linear-gradient(135deg,#100030,#6644cc,#aaccff);"><div class="tilt-card-label">Lunamc Mace</div></div>
+    <div class="tilt-card" style="background:linear-gradient(135deg,#200020,#994499,#ffccff);"><div class="tilt-card-label">Lunamc Cart</div></div>
+    <div class="tilt-card" style="background:linear-gradient(135deg,#001a10,#1a6640,#88ffcc);"><div class="tilt-card-label">Christmas Tage</div></div>
+  </div>
+</div>

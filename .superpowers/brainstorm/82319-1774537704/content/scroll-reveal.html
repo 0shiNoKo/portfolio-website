@@ -1,0 +1,172 @@
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .scroll-section {
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #ffb9cf44;
+    overflow: hidden;
+    max-height: 520px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+  }
+
+  .scroll-section::-webkit-scrollbar { width: 4px; }
+  .scroll-section::-webkit-scrollbar-track { background: #fff9eb; }
+  .scroll-section::-webkit-scrollbar-thumb { background: #ffb9cf; border-radius: 4px; }
+
+  .scroll-intro {
+    padding: 36px 32px 24px;
+    text-align: center;
+    background: linear-gradient(160deg, #fff9eb 0%, #ffffff 100%);
+    border-bottom: 1px solid #ffb9cf22;
+  }
+  .scroll-intro-tag {
+    font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase;
+    color: #bd3c6d; font-weight: 700; margin-bottom: 8px;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  .scroll-intro-title {
+    font-size: 1.6rem; font-weight: 800; color: #1a0008; line-height: 1.2;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  .scroll-intro-title span {
+    background: linear-gradient(90deg, #bd3c6d, #ff78b3);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .scroll-intro-hint {
+    margin-top: 14px; font-size: 0.72rem; color: #9c1e4a88;
+    font-family: 'Segoe UI', sans-serif;
+    animation: bounce 1.5s ease-in-out infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
+  }
+
+  .gallery-feed {
+    padding: 32px 40px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    perspective: 1200px;
+  }
+
+  .thumb-card {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 8px 32px #bd3c6d18;
+    transform: rotateX(40deg) translateY(30px) scale(0.96);
+    opacity: 0;
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.3s ease;
+    transform-origin: bottom center;
+    transform-style: preserve-3d;
+    cursor: pointer;
+  }
+  .thumb-card.visible {
+    transform: rotateX(0deg) translateY(0px) scale(1);
+    opacity: 1;
+  }
+  .thumb-card:hover {
+    box-shadow: 0 20px 56px #bd3c6d33;
+    transform: rotateX(-3deg) translateY(-4px) scale(1.01);
+  }
+  .thumb-card img {
+    width: 100%; display: block;
+    aspect-ratio: 16/9; object-fit: cover;
+  }
+  .thumb-card-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(10,0,5,0.72));
+    padding: 20px 18px 14px;
+    display: flex; align-items: flex-end; justify-content: space-between;
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .thumb-card:hover .thumb-card-overlay { opacity: 1; }
+  .thumb-card-name {
+    font-size: 0.8rem; font-weight: 700; color: #fdf6e4;
+    font-family: 'Segoe UI', sans-serif; letter-spacing: 0.5px;
+  }
+  .thumb-card-tag {
+    font-size: 0.6rem; color: #ff89ba; letter-spacing: 1px;
+    text-transform: uppercase; font-family: 'Segoe UI', sans-serif;
+    background: rgba(123,0,39,0.4); padding: 3px 8px; border-radius: 20px;
+  }
+</style>
+
+<h2>Scroll down inside the box below</h2>
+<p class="subtitle">Cards tilt up as they enter view — hover to see the overlay</p>
+
+<div class="scroll-section" id="scrollBox">
+  <div class="scroll-intro">
+    <div class="scroll-intro-tag">Portfolio — 0shiNoKo</div>
+    <div class="scroll-intro-title">Thumbnails &amp; <span>Banners</span></div>
+    <div class="scroll-intro-hint">↓ scroll to explore</div>
+  </div>
+
+  <div class="gallery-feed">
+    <div class="thumb-card" data-delay="0">
+      <img src="Karma0shiNoKoDuotage.png">
+      <div class="thumb-card-overlay">
+        <div class="thumb-card-name">Karma Duotage</div>
+        <div class="thumb-card-tag">Thumbnail</div>
+      </div>
+    </div>
+    <div class="thumb-card" data-delay="80">
+      <img src="LeaftageV1.png">
+      <div class="thumb-card-overlay">
+        <div class="thumb-card-name">Leaftage V1</div>
+        <div class="thumb-card-tag">Thumbnail</div>
+      </div>
+    </div>
+    <div class="thumb-card" data-delay="0">
+      <img src="TmoaHT3Tage.png">
+      <div class="thumb-card-overlay">
+        <div class="thumb-card-name">TMOA HT3</div>
+        <div class="thumb-card-tag">Thumbnail</div>
+      </div>
+    </div>
+    <div class="thumb-card" data-delay="80">
+      <img src="LunamcMaceHT3Duotage.png">
+      <div class="thumb-card-overlay">
+        <div class="thumb-card-name">Lunamc Mace Duotage</div>
+        <div class="thumb-card-tag">Thumbnail</div>
+      </div>
+    </div>
+    <div class="thumb-card" data-delay="0">
+      <img src="LunamcCartHT3.png">
+      <div class="thumb-card-overlay">
+        <div class="thumb-card-name">Lunamc Cart HT3</div>
+        <div class="thumb-card-tag">Thumbnail</div>
+      </div>
+    </div>
+    <div class="thumb-card" data-delay="80">
+      <img src="ChristmasLeaftage(unused).png">
+      <div class="thumb-card-overlay">
+        <div class="thumb-card-name">Christmas Leaftage</div>
+        <div class="thumb-card-tag">Thumbnail</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const box = document.getElementById('scrollBox');
+  const cards = box.querySelectorAll('.thumb-card');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = parseInt(entry.target.dataset.delay || 0);
+        setTimeout(() => entry.target.classList.add('visible'), delay);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { root: box, threshold: 0.15 });
+
+  cards.forEach(card => observer.observe(card));
+</script>

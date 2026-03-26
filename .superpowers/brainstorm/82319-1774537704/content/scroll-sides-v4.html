@@ -1,0 +1,149 @@
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .scroll-box {
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #ffb9cf44;
+    max-height: 540px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+  }
+  .scroll-box::-webkit-scrollbar { width: 4px; }
+  .scroll-box::-webkit-scrollbar-track { background: #fff9eb; }
+  .scroll-box::-webkit-scrollbar-thumb { background: #ffb9cf; border-radius: 4px; }
+
+  .hero {
+    padding: 28px 24px 20px;
+    text-align: center;
+    background: linear-gradient(160deg, #fff9eb 0%, #ffffff 100%);
+    border-bottom: 1px solid #ffb9cf22;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  .hero-tag { font-size: 0.62rem; letter-spacing: 3px; text-transform: uppercase; color: #bd3c6d; font-weight: 700; margin-bottom: 6px; }
+  .hero-title { font-size: 1.5rem; font-weight: 800; color: #1a0008; }
+  .hero-title span { background: linear-gradient(90deg, #bd3c6d, #ff78b3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero-hint { margin-top: 10px; font-size: 0.7rem; color: #9c1e4a66; animation: bounce 1.6s ease-in-out infinite; }
+  @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
+
+  .gallery {
+    padding: 14px 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: -3px;
+    margin-top: -3px;
+  }
+
+  .thumb-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: -3px;
+    perspective: 1400px;
+  }
+  .thumb-row.left  { justify-content: flex-start; }
+  .thumb-row.right { justify-content: flex-end; }
+
+  .thumb-card {
+    width: 46%;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 6px 24px #bd3c6d14;
+    opacity: 0;
+    transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+
+  .thumb-row.left  .thumb-card { transform: rotateX(30deg) rotateY(18deg) translateX(-40px) scale(0.94); transform-origin: left bottom; }
+  .thumb-row.right .thumb-card { transform: rotateX(30deg) rotateY(-18deg) translateX(40px) scale(0.94); transform-origin: right bottom; }
+
+  .thumb-card.visible { transform: rotateX(0deg) rotateY(0deg) translateX(0) scale(1); opacity: 1; }
+  .thumb-card:hover { box-shadow: 0 16px 40px #bd3c6d33; z-index: 10; position: relative; }
+  .thumb-row.left  .thumb-card:hover { transform: rotateX(-2deg) rotateY(-4deg) scale(1.03); }
+  .thumb-row.right .thumb-card:hover { transform: rotateX(-2deg) rotateY(4deg) scale(1.03); }
+
+  .thumb-card img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; }
+
+  .thumb-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(10,0,5,0.75));
+    padding: 16px 12px 8px;
+    opacity: 0; transition: opacity 0.2s;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex; justify-content: space-between; align-items: flex-end;
+  }
+  .thumb-card:hover .thumb-overlay { opacity: 1; }
+  .overlay-name { font-size: 0.7rem; font-weight: 700; color: #fdf6e4; }
+  .overlay-tag { font-size: 0.55rem; color: #ff89ba; background: rgba(123,0,39,0.45); padding: 2px 6px; border-radius: 20px; }
+
+  .side-label {
+    font-family: 'Segoe UI', sans-serif;
+    writing-mode: vertical-rl;
+    font-size: 0.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ffb9cf;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.5s 0.3s;
+  }
+  .thumb-row.left .side-label { transform: rotate(180deg); }
+  .side-label.visible { opacity: 1; }
+</style>
+
+<h2>Scroll down inside the box</h2>
+<p class="subtitle">Near-overlapping cards</p>
+
+<div class="scroll-box" id="scrollBox">
+  <div class="hero">
+    <div class="hero-tag">Portfolio · 0shiNoKo</div>
+    <div class="hero-title">Thumbnails &amp; <span>Banners</span></div>
+    <div class="hero-hint">↓ scroll</div>
+  </div>
+
+  <div class="gallery">
+    <div class="thumb-row left">
+      <div class="thumb-card"><img src="/files/Karma0shiNoKoDuotage.png"><div class="thumb-overlay"><span class="overlay-name">Karma Duotage</span><span class="overlay-tag">Thumbnail</span></div></div>
+      <span class="side-label">Thumbnail</span>
+    </div>
+    <div class="thumb-row right">
+      <span class="side-label">Thumbnail</span>
+      <div class="thumb-card"><img src="/files/LeaftageV1.png"><div class="thumb-overlay"><span class="overlay-name">Leaftage V1</span><span class="overlay-tag">Thumbnail</span></div></div>
+    </div>
+    <div class="thumb-row left">
+      <div class="thumb-card"><img src="/files/TmoaHT3Tage.png"><div class="thumb-overlay"><span class="overlay-name">TMOA HT3</span><span class="overlay-tag">Thumbnail</span></div></div>
+      <span class="side-label">Thumbnail</span>
+    </div>
+    <div class="thumb-row right">
+      <span class="side-label">Thumbnail</span>
+      <div class="thumb-card"><img src="/files/LunamcMaceHT3Duotage.png"><div class="thumb-overlay"><span class="overlay-name">Lunamc Mace Duotage</span><span class="overlay-tag">Thumbnail</span></div></div>
+    </div>
+    <div class="thumb-row left">
+      <div class="thumb-card"><img src="/files/LunamcCartHT3.png"><div class="thumb-overlay"><span class="overlay-name">Lunamc Cart HT3</span><span class="overlay-tag">Thumbnail</span></div></div>
+      <span class="side-label">Thumbnail</span>
+    </div>
+    <div class="thumb-row right">
+      <span class="side-label">Thumbnail</span>
+      <div class="thumb-card"><img src="/files/ChristmasLeaftage(unused).png"><div class="thumb-overlay"><span class="overlay-name">Christmas Leaftage</span><span class="overlay-tag">Thumbnail</span></div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const box = document.getElementById('scrollBox');
+  const cards = box.querySelectorAll('.thumb-card');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        const label = entry.target.closest('.thumb-row').querySelector('.side-label');
+        if (label) label.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { root: box, threshold: 0.1 });
+  cards.forEach(card => observer.observe(card));
+</script>

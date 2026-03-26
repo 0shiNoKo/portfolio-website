@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #fff9eb;
+  color: #1a0008;
+}
+
+/* Scrollbar hidden globally */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-perspective {
+  perspective: 1400px;
+}
+
+@keyframes tabFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.tab-content-enter {
+  animation: tabFadeIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}

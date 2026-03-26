@@ -1,0 +1,11 @@
+{"type":"server-started","port":52042,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:52042","screen_dir":"/Users/oshi/portfolio-website/.superpowers/brainstorm/87677-1774545552/content","state_dir":"/Users/oshi/portfolio-website/.superpowers/brainstorm/87677-1774545552/state"}
+{"type":"screen-added","file":"/Users/oshi/portfolio-website/.superpowers/brainstorm/87677-1774545552/content/background.html"}
+{"type":"screen-added","file":"/Users/oshi/portfolio-website/.superpowers/brainstorm/87677-1774545552/content/background-v2.html"}
+{"type":"screen-updated","file":"/Users/oshi/portfolio-website/.superpowers/brainstorm/87677-1774545552/content/background-v2.html"}
+{"type":"screen-added","file":"/Users/oshi/portfolio-website/.superpowers/brainstorm/87677-1774545552/content/background-v3.html"}
+{"type":"screen-updated","file":"/Users/oshi/portfolio-website/.superpowers/brainstorm/87677-1774545552/content/background-v3.html"}
+{"type":"screen-updated","file":"/Users/oshi/portfolio-website/.superpowers/brainstorm/87677-1774545552/content/background-v3.html"}
+{"type":"screen-updated","file":"/Users/oshi/portfolio-website/.superpowers/brainstorm/87677-1774545552/content/background-v3.html"}
+{"type":"screen-added","file":"/Users/oshi/portfolio-website/.superpowers/brainstorm/87677-1774545552/content/background-v4.html"}
+{"type":"screen-added","file":"/Users/oshi/portfolio-website/.superpowers/brainstorm/87677-1774545552/content/waiting-2.html"}
+{"type":"server-stopped","reason":"idle timeout"}
