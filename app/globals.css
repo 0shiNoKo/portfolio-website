@@ -20,8 +20,6 @@
   --shadow:         rgba(189,60,109,0.1);
   --shadow-sm:      rgba(189,60,109,0.07);
   --nav-bg:         rgba(255,249,235,0.7);
-  --newspaper-opacity: 0.04;
-  --newspaper-blend:   multiply;
 }
 
 html.dark {
@@ -41,8 +39,6 @@ html.dark {
   --shadow:         rgba(200,0,255,0.2);
   --shadow-sm:      rgba(200,0,255,0.12);
   --nav-bg:         rgba(7,0,16,0.88);
-  --newspaper-opacity: 0.15;
-  --newspaper-blend:   screen;
 }
 
 html {
@@ -55,21 +51,6 @@ body {
   transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* Newspaper texture overlay */
-body::after {
-  content: '';
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background-image: url('/newspaper.jpg');
-  background-size: cover;
-  background-position: center;
-  opacity: var(--newspaper-opacity);
-  pointer-events: none;
-  z-index: 2;
-  mix-blend-mode: var(--newspaper-blend);
-  transition: opacity 0.4s ease;
-}
 
 /* Dark mode scanlines */
 html.dark body::before {

@@ -8,6 +8,7 @@ export default function Nav() {
         <a href="#work" className="hover:text-dark-amaranth transition-colors">Work</a>
         <a href="#about" className="hover:text-dark-amaranth transition-colors">About</a>
         <a href="#services" className="hover:text-dark-amaranth transition-colors">Services</a>
+        <a href="#mods" className="hover:text-dark-amaranth transition-colors">Mods</a>
         <a href="#contact" className="hover:text-dark-amaranth transition-colors">Contact</a>
       </div>
     </nav>

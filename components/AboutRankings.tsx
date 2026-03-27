@@ -13,6 +13,7 @@ const SUBTIERS_META: Record<string, { label: string; svg: string }> = {
   bow:         { label: 'Bow',         svg: '/subtiers/bow-0b52585f.svg' },
   debuff:      { label: 'Debuff',      svg: '/subtiers/debuff-23da9341.svg' },
   creeper:     { label: 'Creeper',     svg: '/subtiers/creeper-2cbc5b3a.svg' },
+  speed:       { label: 'Speed',       svg: '/subtiers/speed-116175c6.svg' },
 }
 
 const MCTIERS_META: Record<string, { label: string; svg: string }> = {
@@ -39,7 +40,9 @@ interface Profile {
   rankings: Record<string, Ranking>
 }
 
-const MC_KIT_ORDER = ['sword', 'pot', 'axe', 'mace', 'uhc', 'smp', 'vanilla', 'nethop']
+function sortByTier(a: [string, Ranking], b: [string, Ranking]) {
+  return (a[1].tier * 2 + a[1].pos) - (b[1].tier * 2 + b[1].pos)
+}
 
 export default async function AboutRankings(): Promise<JSX.Element> {
   let subtiers: Profile | null = null
@@ -59,6 +62,7 @@ export default async function AboutRankings(): Promise<JSX.Element> {
     overall: (subtiers as Profile).overall,
     kits: Object.entries((subtiers as Profile).rankings)
       .filter(([key]) => SUBTIERS_META[key])
+      .sort(sortByTier)
       .map(([key, r]) => ({ key, ...SUBTIERS_META[key], tier: r.tier, pos: r.pos })),
   } : null
 
@@ -69,7 +73,7 @@ export default async function AboutRankings(): Promise<JSX.Element> {
     overall: (mctiers as Profile).overall,
     kits: Object.entries((mctiers as Profile).rankings)
       .filter(([key]) => MCTIERS_META[key])
-      .sort(([a], [b]) => MC_KIT_ORDER.indexOf(a) - MC_KIT_ORDER.indexOf(b))
+      .sort(sortByTier)
       .map(([key, r]) => ({ key, ...MCTIERS_META[key], tier: r.tier, pos: r.pos })),
   } : null
 

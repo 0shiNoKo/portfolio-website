@@ -3,12 +3,35 @@ const DISCORD = 'https://discord.gg/rzuNFKn2'
 export default function Hero() {
   return (
     <section className="flex flex-col items-center justify-center min-h-screen text-center px-8" style={{ position: 'relative', zIndex: 1 }}>
-      <h1
-        className="font-great-vibes text-dark-amaranth leading-none mb-3 hero-name"
-        style={{ fontSize: '15rem', textShadow: '0 2px 24px rgba(255,185,207,0.53)' }}
-      >
-        Oshinoko
-      </h1>
+      <div className="relative inline-block mb-3">
+        {/* Main text — fades out toward the right */}
+        <h1
+          className="font-great-vibes text-dark-amaranth leading-none hero-name"
+          style={{
+            fontSize: '15rem',
+            textShadow: '0 2px 24px rgba(255,185,207,0.53)',
+            WebkitMaskImage: 'linear-gradient(to right, black 50%, transparent 88%)',
+            maskImage: 'linear-gradient(to right, black 50%, transparent 88%)',
+          }}
+        >
+          Oshinoko
+        </h1>
+        {/* Smudge layer — blurred copy visible only on the right */}
+        <h1
+          aria-hidden="true"
+          className="font-great-vibes text-dark-amaranth leading-none hero-name absolute inset-0"
+          style={{
+            fontSize: '15rem',
+            filter: 'blur(10px)',
+            opacity: 0.38,
+            WebkitMaskImage: 'linear-gradient(to right, transparent 40%, black 58%, transparent 100%)',
+            maskImage: 'linear-gradient(to right, transparent 40%, black 58%, transparent 100%)',
+            pointerEvents: 'none',
+          }}
+        >
+          Oshinoko
+        </h1>
+      </div>
       <p
         className="font-inter text-berry-crush font-medium uppercase mb-7"
         style={{ fontSize: '0.85rem', letterSpacing: '5px' }}

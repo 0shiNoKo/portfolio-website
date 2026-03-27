@@ -31,8 +31,28 @@ function tierLabel(tier: number, pos: number) {
   return `${pos === 0 ? 'HT' : 'LT'}${tier}`
 }
 
+// rank 0 (HT1) = most vivid pastel, rank 9 (LT5) = most faded
+const TIER_COLORS: { bg: string; color: string }[] = [
+  { bg: 'linear-gradient(135deg, #ff4d8f, #ff80b3)', color: '#6b0028' },  // HT1
+  { bg: 'linear-gradient(135deg, #ff6699, #ff99bb)', color: '#6b0028' },  // LT1
+  { bg: 'linear-gradient(135deg, #ff80b3, #ffaacc)', color: '#7b0027' },  // HT2
+  { bg: 'linear-gradient(135deg, #ffaacc, #ffc4d8)', color: '#7b0027' },  // LT2
+  { bg: 'linear-gradient(135deg, #ffc0d4, #ffd6e5)', color: '#9c1e4a' },  // HT3
+  { bg: 'linear-gradient(135deg, #ffd0e2, #ffe4ef)', color: '#9c1e4a' },  // LT3
+  { bg: 'linear-gradient(135deg, #ffe0ec, #ffeef5)', color: '#bd3c6d' },  // HT4
+  { bg: 'linear-gradient(135deg, #ffeaf3, #fff4f9)', color: '#bd3c6d' },  // LT4
+  { bg: 'linear-gradient(135deg, #fff0f6, #fff8fb)', color: '#bd3c6d' },  // HT5
+  { bg: 'linear-gradient(135deg, #fff5f9, #fffcfe)', color: '#d4789a' },  // LT5
+]
+
+function tierStyle(tier: number, pos: number) {
+  const rank = Math.min((tier - 1) * 2 + pos, TIER_COLORS.length - 1)
+  return TIER_COLORS[rank]
+}
+
 // Icon + tier pill, joined together
 function KitPill({ svg, label, tier, pos }: { svg: string; label: string; tier: number; pos: number }) {
+  const { bg, color } = tierStyle(tier, pos)
   return (
     <div className="flex rounded-xl overflow-hidden" title={label}>
       {/* Icon half */}
@@ -45,11 +65,7 @@ function KitPill({ svg, label, tier, pos }: { svg: string; label: string; tier: 
       {/* Tier half */}
       <div
         className="flex items-center justify-center font-inter font-bold text-xs flex-1 px-2"
-        style={{
-          background: 'linear-gradient(135deg, var(--grad-start), var(--grad-end))',
-          color: 'var(--bg)',
-          minWidth: 36,
-        }}
+        style={{ background: bg, color, minWidth: 36 }}
       >
         {tierLabel(tier, pos)}
       </div>
