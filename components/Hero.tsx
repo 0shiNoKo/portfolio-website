@@ -7,7 +7,7 @@ export default function Hero() {
         <h1
           className="font-great-vibes text-dark-amaranth leading-none hero-name"
           style={{
-            fontSize: '15rem',
+            fontSize: 'clamp(5rem, 20vw, 15rem)',
             textShadow: '0 2px 24px rgba(255,185,207,0.53)',
           }}
         >

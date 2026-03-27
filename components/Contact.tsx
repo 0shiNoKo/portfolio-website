@@ -8,7 +8,7 @@ export default function Contact() {
       </p>
       <h2
         className="font-great-vibes text-dark-amaranth leading-none mb-6"
-        style={{ fontSize: '7rem' }}
+        style={{ fontSize: 'clamp(3.5rem, 14vw, 7rem)' }}
       >
         Let&apos;s talk
       </h2>

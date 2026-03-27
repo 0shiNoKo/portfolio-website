@@ -4,7 +4,7 @@ export default function Nav() {
       <a href="#" className="font-great-vibes text-3xl text-dark-amaranth leading-none">
         Oshinoko
       </a>
-      <div className="flex gap-8 items-center text-sm font-medium tracking-widest uppercase text-berry-crush">
+      <div className="hidden md:flex gap-6 items-center text-sm font-medium tracking-widest uppercase text-berry-crush">
         <a href="#work" className="hover:text-dark-amaranth transition-colors">Work</a>
         <a href="#about" className="hover:text-dark-amaranth transition-colors">About</a>
         <a href="#services" className="hover:text-dark-amaranth transition-colors">Services</a>

@@ -1,5 +1,6 @@
 import type { JSX } from 'react'
 import RankingsTabs from './RankingsTabs'
+import SpotifyStats from './SpotifyStats'
 
 const SUBTIERS_META: Record<string, { label: string; svg: string }> = {
   og_vanilla:  { label: 'OG Vanilla',  svg: '/subtiers/og_vanilla-bd47093f.svg' },
@@ -91,6 +92,7 @@ export default async function AboutRankings(): Promise<JSX.Element> {
               Minecraft PvP and just getting better in general.
             </p>
           </div>
+          <SpotifyStats />
         </div>
 
         {/* ── Right: Tabbed Rankings ── */}

@@ -48,7 +48,7 @@ export default async function Mods(): Promise<JSX.Element> {
           }}
         >
           {/* Header */}
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex flex-wrap items-start gap-4 mb-4">
             {mod.icon_url && (
               <Image
                 src={mod.icon_url}
@@ -64,7 +64,7 @@ export default async function Mods(): Promise<JSX.Element> {
                 {mod.description}
               </p>
             </div>
-            <div className="flex-shrink-0 text-right">
+            <div className="w-full sm:w-auto sm:flex-shrink-0 sm:text-right">
               <span
                 className="font-inter font-bold text-sm"
                 style={{
@@ -93,7 +93,7 @@ export default async function Mods(): Promise<JSX.Element> {
 
           {/* Gallery */}
           {mod.gallery.length > 0 && (
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               {mod.gallery.slice(0, 3).map((img, i) => (
                 <div key={i} className="rounded-xl overflow-hidden aspect-video relative">
                   <Image

@@ -18,7 +18,7 @@ export default function Services() {
       <h2 className="font-inter font-bold text-3xl text-dark-amaranth text-center mb-14 tracking-wide">
         What I Offer
       </h2>
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
         {services.map((s) => (
           <div
             key={s.title}

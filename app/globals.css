@@ -77,6 +77,14 @@ html.dark body::before {
   display: none;
 }
 
+/* Spotify rows */
+.spotify-row {
+  transition: background 0.15s ease;
+}
+.spotify-row:hover {
+  background: rgba(189, 60, 109, 0.08);
+}
+
 /* Gallery */
 .gallery-perspective {
   perspective: 1400px;
