@@ -1,4 +1,4 @@
-const DISCORD = 'https://discord.gg/rzuNFKn2'
+const DISCORD = 'https://discord.gg/DSE9rQy8Za'
 
 export default function Contact() {
   return (
@@ -26,7 +26,7 @@ export default function Contact() {
           WebkitTextFillColor: 'transparent',
         }}
       >
-        discord.gg/rzuNFKn2
+        discord.gg/DSE9rQy8Za
       </a>
     </section>
   )

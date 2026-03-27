@@ -1,4 +1,4 @@
-const DISCORD = 'https://discord.gg/rzuNFKn2'
+const DISCORD = 'https://discord.gg/DSE9rQy8Za'
 
 export default function Hero() {
   return (
