@@ -92,6 +92,10 @@ html.dark body::before {
 .scroll-blink {
   animation: scrollPulse 1.6s ease-in-out infinite;
 }
+.scroll-blink:hover {
+  animation: none;
+  opacity: 1;
+}
 
 /* Tab fade */
 @keyframes tabFadeIn {
