@@ -21,7 +21,7 @@ const CATEGORY_MAP: Record<Tab, string> = {
 const VIDEOS = [
   { id: 'Cmk_TiH8cao', title: 'Video 1' },
   { id: 'Lwq00Ac38NI', title: 'Video 2' },
-  { id: 'Cmk_TiH8cao', title: 'Video 3' },
+  { id: 'RdnKSRVD6L8', title: 'Video 3' },
 ]
 
 const CARD_TILT_X = 28
@@ -40,6 +40,8 @@ export default function Gallery() {
 
   useEffect(() => {
     const observers: IntersectionObserver[] = []
+    // Trim stale refs from previous tab
+    cardRefs.current = cardRefs.current.slice(0, filtered.length)
 
     cardRefs.current.forEach((card, i) => {
       if (!card) return
@@ -49,10 +51,14 @@ export default function Gallery() {
           if (entry.isIntersecting) {
             card.style.opacity = '1'
             card.style.transform = 'rotateX(0deg) rotateY(0deg) translateX(0) scale(1)'
-            observer.unobserve(card)
+          } else {
+            card.style.opacity = '0'
+            card.style.transform = isLeft
+              ? `rotateX(${CARD_TILT_X}deg) rotateY(${CARD_TILT_Y}deg) translateX(-${CARD_TRANSLATE}px) scale(${CARD_SCALE_HIDDEN})`
+              : `rotateX(${CARD_TILT_X}deg) rotateY(-${CARD_TILT_Y}deg) translateX(${CARD_TRANSLATE}px) scale(${CARD_SCALE_HIDDEN})`
           }
         },
-        { threshold: CARD_INTERSECT_THRESHOLD }
+        { threshold: [0, CARD_INTERSECT_THRESHOLD] }
       )
       card.style.opacity = '0'
       card.style.transform = isLeft
@@ -81,14 +87,14 @@ export default function Gallery() {
             style={
               activeTab === tab.id
                 ? {
-                    background: 'linear-gradient(90deg, #9c1e4a, #bd3c6d)',
-                    color: '#fff9eb',
-                    boxShadow: '0 4px 16px rgba(189,60,109,0.3)',
+                    background: 'linear-gradient(90deg, var(--grad-start), var(--grad-end))',
+                    color: 'var(--bg)',
+                    boxShadow: '0 4px 16px var(--shadow)',
                   }
                 : {
-                    background: '#fff9eb',
-                    color: '#bd3c6d',
-                    border: '1.5px solid rgba(255,185,207,0.6)',
+                    background: 'var(--bg-card)',
+                    color: 'var(--accent-primary)',
+                    border: '1.5px solid var(--border)',
                   }
             }
           >
@@ -120,7 +126,7 @@ export default function Gallery() {
           Coming soon
         </p>
       ) : (
-        <div key={activeTab} className="tab-content-enter gallery-perspective flex flex-col gap-2 max-w-5xl mx-auto">
+        <div key={activeTab} className="gallery-perspective flex flex-col gap-2 max-w-5xl mx-auto">
           {filtered.map((thumb, i) => {
             const isLeft = i % 2 === 0
             return (

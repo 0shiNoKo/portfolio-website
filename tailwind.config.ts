@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
+  darkMode: 'class',
   content: [
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
@@ -12,12 +13,12 @@ const config: Config = {
         'great-vibes': ['var(--font-great-vibes)', 'cursive'],
       },
       colors: {
-        ivory: '#fff9eb',
-        'cherry-blossom': '#ffb9cf',
-        'pink-carnation': '#ff78b3',
-        'berry-crush': '#bd3c6d',
-        'cherry-rose': '#9c1e4a',
-        'dark-amaranth': '#7b0027',
+        ivory:            'var(--bg)',
+        'cherry-blossom': 'var(--accent-light)',
+        'pink-carnation': 'var(--accent-mid)',
+        'berry-crush':    'var(--accent-primary)',
+        'cherry-rose':    'var(--grad-start)',
+        'dark-amaranth':  'var(--name-color)',
       },
     },
   },

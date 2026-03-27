@@ -38,7 +38,7 @@ function KitPill({ svg, label, tier, pos }: { svg: string; label: string; tier: 
       {/* Icon half */}
       <div
         className="flex items-center justify-center p-2 flex-shrink-0"
-        style={{ background: 'rgba(255,185,207,0.25)', minWidth: 40 }}
+        style={{ background: 'var(--kit-bg)', minWidth: 40 }}
       >
         <Image src={svg} alt={label} width={22} height={22} />
       </div>
@@ -46,8 +46,8 @@ function KitPill({ svg, label, tier, pos }: { svg: string; label: string; tier: 
       <div
         className="flex items-center justify-center font-inter font-bold text-xs flex-1 px-2"
         style={{
-          background: 'linear-gradient(135deg, #9c1e4a, #bd3c6d)',
-          color: '#fff9eb',
+          background: 'linear-gradient(135deg, var(--grad-start), var(--grad-end))',
+          color: 'var(--bg)',
           minWidth: 36,
         }}
       >
@@ -89,8 +89,8 @@ export default function RankingsTabs({
             className="font-inter font-semibold text-xs tracking-widest uppercase px-4 py-1.5 rounded-full transition-all duration-200"
             style={
               active === tab.id
-                ? { background: 'linear-gradient(90deg, #9c1e4a, #bd3c6d)', color: '#fff9eb', boxShadow: '0 4px 12px rgba(189,60,109,0.3)' }
-                : { background: '#fff9eb', color: '#bd3c6d', border: '1.5px solid rgba(255,185,207,0.6)' }
+                ? { background: 'linear-gradient(90deg, var(--grad-start), var(--grad-end))', color: 'var(--bg)', boxShadow: '0 4px 12px var(--shadow)' }
+                : { background: 'var(--bg-card)', color: 'var(--accent-primary)', border: '1.5px solid var(--border)' }
             }
           >
             {tab.label}
@@ -100,13 +100,13 @@ export default function RankingsTabs({
 
       {profile && (
         // Extra top margin so the overflowing skin circle has space above the card
-        <div className="tab-content-enter" style={{ marginTop: 68 }}>
+        <div className="tab-content-enter" style={{ marginTop: 86 }}>
           <div
             className="rounded-2xl"
             style={{
-              background: '#fff9eb',
-              border: '1.5px solid rgba(255,185,207,0.5)',
-              boxShadow: '0 8px 40px rgba(189,60,109,0.12)',
+              background: 'var(--bg-card)',
+              border: '1.5px solid var(--border)',
+              boxShadow: '0 8px 40px var(--shadow)',
               position: 'relative',
             }}
           >
@@ -114,32 +114,32 @@ export default function RankingsTabs({
             <div
               style={{
                 position: 'absolute',
-                top: -68,
+                top: -80,
                 left: 20,
-                width: 100,
-                height: 100,
+                width: 130,
+                height: 130,
                 borderRadius: '50%',
                 overflow: 'hidden',
-                border: '2.5px solid rgba(255,185,207,0.7)',
-                background: 'rgba(255,230,240,0.4)',
-                boxShadow: '0 4px 20px rgba(189,60,109,0.18)',
+                border: '2.5px solid var(--border)',
+                background: 'var(--kit-bg)',
+                boxShadow: '0 4px 20px var(--shadow)',
                 cursor: 'grab',
               }}
             >
               {/* Canvas is taller than circle so body gets cut off at the bottom */}
-              <MinecraftSkin width={100} height={170} zoom={1.45} targetY={0.7} />
+              <MinecraftSkin width={130} height={220} zoom={0.85} targetY={0.2} />
             </div>
 
             {/* Card body */}
-            <div className="p-5" style={{ paddingTop: 44 }}>
+            <div className="p-5" style={{ paddingTop: 58 }}>
               {/* Header */}
-              <div className="mb-4 pb-4" style={{ borderBottom: '1px solid rgba(255,185,207,0.4)' }}>
+              <div className="mb-4 pb-4" style={{ borderBottom: '1px solid var(--border)' }}>
                 <h3 className="font-inter font-bold text-xl text-dark-amaranth">{profile.name}</h3>
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1">
                   <span
                     className="font-inter font-bold text-sm"
                     style={{
-                      background: 'linear-gradient(90deg, #9c1e4a, #bd3c6d)',
+                      background: 'linear-gradient(90deg, var(--grad-start), var(--grad-end))',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
                     }}

@@ -2,13 +2,89 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Theme variables ── */
+:root {
+  --bg:             #fff9eb;
+  --bg-card:        #fff9eb;
+  --text:           #1a0008;
+  --text-muted:     rgba(58,0,16,0.88);
+  --name-color:     #7b0027;
+  --accent-primary: #bd3c6d;
+  --accent-mid:     #ff78b3;
+  --accent-light:   #ffb9cf;
+  --grad-start:     #9c1e4a;
+  --grad-end:       #bd3c6d;
+  --border:         rgba(255,185,207,0.5);
+  --border-sm:      rgba(255,185,207,0.3);
+  --kit-bg:         rgba(255,185,207,0.15);
+  --shadow:         rgba(189,60,109,0.1);
+  --shadow-sm:      rgba(189,60,109,0.07);
+  --nav-bg:         rgba(255,249,235,0.7);
+  --newspaper-opacity: 0.04;
+  --newspaper-blend:   multiply;
+}
+
+html.dark {
+  --bg:             #070010;
+  --bg-card:        #100020;
+  --text:           #ede0ff;
+  --text-muted:     rgba(200,180,255,0.88);
+  --name-color:     #ff6eb5;
+  --accent-primary: #e040fb;
+  --accent-mid:     #ff2d78;
+  --accent-light:   #3d0060;
+  --grad-start:     #ff0066;
+  --grad-end:       #cc00ff;
+  --border:         rgba(200,0,255,0.3);
+  --border-sm:      rgba(200,0,255,0.2);
+  --kit-bg:         rgba(200,0,255,0.08);
+  --shadow:         rgba(200,0,255,0.2);
+  --shadow-sm:      rgba(200,0,255,0.12);
+  --nav-bg:         rgba(7,0,16,0.88);
+  --newspaper-opacity: 0.15;
+  --newspaper-blend:   screen;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: #fff9eb;
-  color: #1a0008;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Newspaper texture overlay */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background-image: url('/newspaper.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: var(--newspaper-opacity);
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: var(--newspaper-blend);
+  transition: opacity 0.4s ease;
+}
+
+/* Dark mode scanlines */
+html.dark body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,0) 0px,
+    rgba(0,0,0,0) 1px,
+    rgba(0,0,0,0.07) 2px,
+    rgba(0,0,0,0) 3px
+  );
+  pointer-events: none;
+  z-index: 3;
 }
 
 /* Scrollbar hidden globally */
@@ -20,14 +96,55 @@ body {
   display: none;
 }
 
+/* Gallery */
 .gallery-perspective {
   perspective: 1400px;
 }
 
+/* Scroll indicator pulse */
+@keyframes scrollPulse {
+  0%   { opacity: 1; }
+  40%  { opacity: 0; }
+  70%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+.scroll-blink {
+  animation: scrollPulse 1.6s ease-in-out infinite;
+}
+
+/* Tab fade */
 @keyframes tabFadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 .tab-content-enter {
   animation: tabFadeIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Glitch animation for hero name in dark mode */
+@keyframes nameGlitch {
+  0%, 86%, 100% {
+    text-shadow: 0 2px 24px rgba(255,110,181,0.55), 0 0 50px rgba(255,0,102,0.2);
+    transform: none;
+  }
+  88% {
+    text-shadow: -4px 0 rgba(255,0,102,0.95), 4px 0 rgba(0,255,200,0.9), 0 0 30px rgba(255,0,102,0.7);
+    transform: translateX(-3px) skewX(-1deg);
+  }
+  90% {
+    text-shadow: 4px 0 rgba(255,0,102,0.95), -4px 0 rgba(0,255,200,0.9);
+    transform: translateX(3px) skewX(1deg);
+  }
+  92% {
+    text-shadow: -2px 0 rgba(255,0,102,0.6), 2px 0 rgba(0,255,200,0.6);
+    transform: translateX(-1px);
+  }
+  94% {
+    text-shadow: 0 2px 24px rgba(255,110,181,0.55);
+    transform: none;
+  }
+}
+
+html.dark .hero-name {
+  animation: nameGlitch 6s infinite;
 }

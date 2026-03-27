@@ -82,7 +82,7 @@ export default async function AboutRankings(): Promise<JSX.Element> {
           <div className="w-full">
             <p className="font-inter text-xs font-bold tracking-widest uppercase text-berry-crush mb-4">About</p>
             <h2 className="font-great-vibes text-dark-amaranth text-6xl leading-tight mb-6">Oshinoko</h2>
-            <p className="font-inter text-base leading-relaxed" style={{ color: '#3a0010' }}>
+            <p className="font-inter text-base leading-relaxed" style={{ color: 'var(--text-muted)' }}>
               Hi, I&apos;m Oshinoko. I love improving in Minecraft as well as design. I love playing
               Minecraft PvP and just getting better in general.
             </p>

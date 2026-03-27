@@ -21,7 +21,7 @@ export default function Contact() {
         rel="noopener noreferrer"
         className="font-inter font-semibold tracking-widest text-sm uppercase"
         style={{
-          background: 'linear-gradient(90deg, #9c1e4a, #bd3c6d)',
+          background: 'linear-gradient(90deg, var(--grad-start), var(--grad-end))',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
         }}
