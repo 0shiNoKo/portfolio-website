@@ -4,18 +4,13 @@ export default function Hero() {
   return (
     <section className="flex flex-col items-center justify-center min-h-screen text-center px-8" style={{ position: 'relative', zIndex: 1 }}>
       <div className="relative inline-block mb-3">
-        {/* Main text — fades out toward the right */}
         <h1
           className="font-great-vibes text-dark-amaranth leading-none hero-name"
           style={{
             fontSize: '15rem',
             textShadow: '0 2px 24px rgba(255,185,207,0.53)',
-            WebkitMaskImage: 'linear-gradient(to right, black 50%, transparent 88%)',
-            maskImage: 'linear-gradient(to right, black 50%, transparent 88%)',
           }}
         >
-          Oshinoko
-        </h1>
           Oshinoko
         </h1>
       </div>
