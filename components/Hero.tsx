@@ -16,19 +16,6 @@ export default function Hero() {
         >
           Oshinoko
         </h1>
-        {/* Smudge layer — blurred copy visible only on the right */}
-        <h1
-          aria-hidden="true"
-          className="font-great-vibes text-dark-amaranth leading-none hero-name absolute inset-0"
-          style={{
-            fontSize: '15rem',
-            filter: 'blur(10px)',
-            opacity: 0.38,
-            WebkitMaskImage: 'linear-gradient(to right, transparent 40%, black 58%, transparent 100%)',
-            maskImage: 'linear-gradient(to right, transparent 40%, black 58%, transparent 100%)',
-            pointerEvents: 'none',
-          }}
-        >
           Oshinoko
         </h1>
       </div>
