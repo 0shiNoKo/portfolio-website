@@ -2,7 +2,8 @@
 
 import { useEffect } from 'react'
 
-const PETAL_COUNT = 75
+const PETAL_COUNT_DESKTOP = 75
+const PETAL_COUNT_MOBILE  = 20
 const COLORS = ['#ffb9cf', '#ff99c1', '#ff89ba', '#ff78b3', '#fde8f0', '#ffd0e0']
 const COLORS_DARK = ['#3d0060', '#6600aa', '#4d0080', '#220044', '#1a003a', '#550090']
 const SHAPES = [
@@ -41,6 +42,8 @@ export default function Background() {
   useEffect(() => {
     const W = window.innerWidth
     const H = window.innerHeight
+    const isMobile = W < 768
+    const PETAL_COUNT = isMobile ? PETAL_COUNT_MOBILE : PETAL_COUNT_DESKTOP
 
     const isDark = document.documentElement.classList.contains('dark')
     const activeBlobs = isDark ? BLOB_CONFIGS_DARK : BLOB_CONFIGS
