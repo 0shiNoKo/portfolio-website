@@ -45,6 +45,9 @@ export default function Services() {
           </div>
         ))}
       </div>
+      <p className="font-inter text-sm text-center mt-8" style={{ color: 'var(--text-muted)', opacity: 0.6 }}>
+        or buy me a domain / Discord Nitro :)
+      </p>
     </section>
   )
 }

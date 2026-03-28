@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
+import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 const greatVibes = localFont({
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${greatVibes.variable} ${inter.variable}`}>
       <body className="font-inter">
         {children}
+        <Analytics />
       </body>
     </html>
   )
