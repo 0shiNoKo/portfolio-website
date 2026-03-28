@@ -69,7 +69,7 @@ export default async function SpotifyStats() {
         <p className="font-inter text-xs font-bold tracking-widest uppercase">Listening To</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 min-[480px]:grid-cols-2 gap-4">
         <div>
           <p className="font-inter text-xs font-semibold uppercase tracking-wider mb-1 px-2" style={{ color: 'var(--text-muted)', opacity: 0.7 }}>
             Top Tracks
@@ -81,7 +81,7 @@ export default async function SpotifyStats() {
           </div>
         </div>
 
-        <div style={{ borderLeft: '1px solid var(--border)', paddingLeft: '0.75rem' }}>
+        <div>
           <p className="font-inter text-xs font-semibold uppercase tracking-wider mb-1 px-2" style={{ color: 'var(--text-muted)', opacity: 0.7 }}>
             Top Artists
           </p>

@@ -2,8 +2,8 @@
 
 import { useEffect } from 'react'
 
-const PETAL_COUNT_DESKTOP = 75
-const PETAL_COUNT_MOBILE  = 20
+const PETAL_COUNT_DESKTOP = 35
+const PETAL_COUNT_MOBILE  = 10
 const COLORS = ['#ffb9cf', '#ff99c1', '#ff89ba', '#ff78b3', '#fde8f0', '#ffd0e0']
 const COLORS_DARK = ['#3d0060', '#6600aa', '#4d0080', '#220044', '#1a003a', '#550090']
 const SHAPES = [
@@ -109,6 +109,14 @@ export default function Background() {
     const handleMouse = (e: MouseEvent) => { mouse.x = e.clientX; mouse.y = e.clientY }
     window.addEventListener('mousemove', handleMouse)
 
+    // ── Scroll influence ──
+    // Positive = scroll down (fall faster), negative = scroll up (fall slower)
+    let scrollBoost = 0
+    const handleWheel = (e: WheelEvent) => {
+      scrollBoost = Math.max(-1.2, Math.min(2.5, e.deltaY * 0.04))
+    }
+    window.addEventListener('wheel', handleWheel, { passive: true })
+
     // ── Animation loop ──
     let frame = 0
     let rafId: number
@@ -147,8 +155,11 @@ export default function Background() {
         el.style.top = `${p.y}px`
       })
 
+      scrollBoost *= scrollBoost < 0 ? 0.72 : 0.88  // recover faster when slowed
+
       petals.forEach(p => {
         p.vy += 0.018
+        p.vy += scrollBoost * 0.12  // scroll influence
         p.vx *= 0.995
         p.vy *= 0.995
         p.x += p.vx
@@ -159,7 +170,11 @@ export default function Background() {
         if (p.x < -40) p.x = W + 40
         if (p.x > W + 40) p.x = -40
 
-        p.el.style.transform = `translate(${p.x}px,${p.y}px) rotate(${p.rot}deg) scale(${p.scale})`
+        const speed  = Math.abs(p.vy) + Math.abs(p.vx) * 0.5
+        const blur   = Math.max(0, speed * 0.55 - 0.4)
+        const stretch = 1 + Math.max(0, p.vy * 0.06)
+        p.el.style.transform = `translate(${p.x}px,${p.y}px) rotate(${p.rot}deg) scaleX(${p.scale}) scaleY(${p.scale * stretch})`
+        p.el.style.filter  = blur > 0 ? `blur(${blur.toFixed(2)}px)` : ''
         p.el.style.opacity = String(p.opacity)
       })
 
@@ -170,6 +185,7 @@ export default function Background() {
 
     return () => {
       window.removeEventListener('mousemove', handleMouse)
+      window.removeEventListener('wheel', handleWheel)
       cancelAnimationFrame(rafId)
       document.body.removeChild(blobLayer)
       document.body.removeChild(petalLayer)
